@@ -1,0 +1,20 @@
+Explaining bugs.
+
+Crash 1:
+In line 25 num_bytes was changed 116 to -1, which crashes the reader in line 189. This
+tries to allocate an invalid amount of memory. Security issues are commond in c because
+of memory allocation issues. Here this seems to have happened as the value for num_bytes
+was later used for malloc (memory allocation).
+
+Crash 2:
+Lines 35, 51, 55 and 57 have alterations, however did not succesfully crash the program.
+
+I attempted to find a second crash. It seems as though the only way to create a crash would
+be to alter the ints entered as in the previous example they may be used for memory allocation
+or like in following example 
+
+
+Hang:
+In line 29 changing number_of_gift_card_records from 1 to 5. This creates an infinite loop
+as it tries to access gift cards which have no records. It keeps trying to read infromation
+that is not given.

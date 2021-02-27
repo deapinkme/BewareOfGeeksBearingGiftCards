@@ -1,0 +1,30 @@
+Writeup part 3
+
+Coverage 1:
+Coverage.info shows that lines 79 to 100 are not all running. This is meant to print out
+certain details such as record_type based on a condition.
+gcrd_ptr->type_of_record == 1
+gcrd_ptr->type_of_record == 2
+gcrd_ptr->type_of_record == 3
+Will alter which section of code runs in the range of those 21 lines. Since it is an if loop\
+when one condition is sacified the others are not considered and therefore are not run.
+
+Coverage 2:
+225-254
+
+Coverage.info shows that lines 225 to 254 are not all running. This is meant to allocate
+memory differently based on a condition.
+gcrd_ptr->type_of_record == 1
+gcrd_ptr->type_of_record == 2
+gcrd_ptr->type_of_record == 3
+One again there is an if statement based on a condition that will alter which lines are being
+run. The same condition is being altered however inputing 1, 2 or 3 for this will give three
+different outcomes on which section/lines of code run.
+
+Fuzzer1:
+Attempting to perform a fuzzer:
+
+afl-gcc -o f-giftcardreader giftcardreader.c
+afl-fuzz -i . -o fresult -- ./f-giftcardreader 1 @@
+
+Fuzzer2:
